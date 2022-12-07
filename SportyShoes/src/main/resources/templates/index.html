@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+</head>
+<body>
+
+
+	<div class="container">
+		<h1>Welcome to Sporty Shoes</h1>
+
+		<div class="col-md-12 bg-light text-right">
+			<a th:href="@{/admin/adminPage}" class="btn btn-primary btn-sm mb-3">AdminChangePassword</a>
+		</div>
+
+		<a th:href="@{/user/SignedUpusers}" class="btn btn-primary btn-sm mb-3">SignedUpUsers
+		</a> <a th:href="@{/product/newProductform}" class="btn btn-primary btn-sm mb-3">Add
+			Product</a>
+		<h1>Product list</h1>
+		<table border="1" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>productId</th>
+					<th>productDescription</th>
+					<th>productName</th>
+					<th>productPrice</th>
+					<th>productType</th>
+					<th>Actions</th>
+
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="product : ${AllProducts}">
+
+
+					<td><span th:text="${product.productId}"></span></td>
+					<td><span th:text="${product.productDescription}"></span></td>
+					<td><span th:text="${product.productName}"></span></td>
+					<td><span th:text="${product.productPrice}"></span></td>
+					<td><span th:text="${product.productType}"></span></td>
+					<td><a
+						th:href="@{/product/updateproduct/{id}(id=${product.productId})}"
+						class="btn btn-primary">Update</a> <a
+						th:href="@{/product/deleteproduct/{id}(id=${product.productId})}"
+						class="btn btn-primary">Delete</a></td>
+
+
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>
